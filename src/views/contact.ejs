@@ -16,19 +16,19 @@
                 <input type="hidden" name="_csrf" value=<%= csrfToken %>>
 
                 <div class="form-group my-3">
-                  <input type="text" class="form-control" name="first-name"  placeholder="First name">
+                  <input value="<%= contact.firstName %>" type="text" class="form-control" name="firstName"  placeholder="First name">
                 </div>
 
                 <div class="form-group my-3">
-                    <input type="text" class="form-control" name="last-name"  placeholder="Last name">
+                    <input value="<%= contact.lastName %>" type="text" class="form-control" name="lastName"  placeholder="Last name">
                 </div>
 
                 <div class="form-group my-3">
-                    <input type="email" class="form-control" name="email"  placeholder="Email">
+                    <input value="<%= contact.email %>" type="email" class="form-control" name="email"  placeholder="Email">
                 </div>
 
                 <div class="form-group my-3">
-                    <input type="tel" class="form-control" name="telephone"  placeholder="Telephone">
+                    <input value="<%= contact.telephone %>" type="tel" class="form-control" name="telephone"  placeholder="Telephone">
                 </div>
 
                 
