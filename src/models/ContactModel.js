@@ -77,4 +77,17 @@ Contact.prototype.edit = async function (id) {
     this.contact = await ContactModel.findByIdAndUpdate(id, this.body, { new: true });
 }
 
+Contact.searchContacts = async function (idUser) {
+    const contacts = await ContactModel.find({ idUser: idUser }).sort({ firstName: 1 });
+
+    return contacts;
+}
+
+Contact.delete = async function (id) {
+    if (typeof id !== 'string') return;
+    const contact = await ContactModel.findOneAndDelete(id);
+
+    return contact;
+}
+
 module.exports = Contact;
