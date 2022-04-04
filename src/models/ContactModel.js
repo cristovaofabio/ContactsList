@@ -8,6 +8,7 @@ const ContactSchema = new mongoose.Schema({
     email: { type: String, required: false, default: '' },
     telephone: { type: String, required: false, default: '' },
     createdIn: { type: Date, default: Date.now },
+    idUser: { type: String, required: true },
 });
 
 const ContactModel = mongoose.model('Contact', ContactSchema);
@@ -26,11 +27,12 @@ Contact.searchId = async function (id) {
     return user;
 }
 
-Contact.prototype.register = async function () {
+Contact.prototype.register = async function (idUser) {
     this.valid();
 
     if (this.errors.length > 0) return;
 
+    this.body.idUser = idUser;
     this.contact = await ContactModel.create(this.body);
 };
 

@@ -11,7 +11,15 @@ exports.index = (req, res) => {
 exports.register = async (req, res) => {
     try {
         const contact = new Contact(req.body);
-        await contact.register();
+        const idUser = req.session.user._id;
+
+        if (!idUser) {
+            req.flash('errors', 'You need to login');
+            req.session.save(() => res.redirect('/contact/index'));
+            return;
+        }
+
+        await contact.register(idUser);
 
         if (contact.errors.length > 0) {
             req.flash('errors', contact.errors);
@@ -58,7 +66,7 @@ exports.edit = async function (req, res) {
             return res.redirect(`/contact/index/${contact.contact._id}`);
         });
     } catch (e) {
-        console.log('ERROR:',e);
+        console.log('ERROR:', e);
         return res.render('404');
     }
 }
